@@ -241,7 +241,8 @@ CacheEntry* FSCache::cachePage(uint32_t address)
 	if (lru->page == NULL)
 		lru->page = (uint8_t *) malloc(blockSize);
 
-	flash.read((uint32_t *)lru->page, address, blockSize / 4);
+	// NOTE: THIS FLASH READ IS UNNCESSARY IN OUR CASE BECAUSE WE ERASE ONCE AT THE START.
+	// flash.read((uint32_t *)lru->page, address, blockSize / 4);
 
 	return lru;
 }
