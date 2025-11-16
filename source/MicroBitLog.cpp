@@ -768,7 +768,9 @@ int MicroBitLog::_logString(const char *s)
             uint32_t nextPage = ((dataEnd / flash.getPageSize()) + 1) * flash.getPageSize();
 
             //DMESG("   ERASING PAGE %p", nextPage);
-            flash.erase(nextPage);
+
+            // NOTE: IN THE CASE OF SCC342 WE DO NOT NEED TO DO THIS BECAUSE WE uBit.log.clear(true) AT THE START.
+            // flash.erase(nextPage); // PERFORMANCE BOOST.
         }
 
         // Perform a write through cache update
